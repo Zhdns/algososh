@@ -1,0 +1,24 @@
+.main {
+    display: flex;
+    max-width: 950px;
+    margin: 0 auto 15px;
+    justify-content: center;
+    gap: 12px;
+}
+
+.input {
+    max-width: 200px;
+}
+
+.button {
+    width: 352px;
+}
+
+.second {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    
+    
+}

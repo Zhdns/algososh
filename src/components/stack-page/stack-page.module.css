@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+
+}
+
+.button {
+    margin: 0;
+}
+
+
+.button:last-child {
+    margin: 0 0 0 68px;
+}
+
+.input {
+    max-width: 377px;
+}
+
+.second {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 40px auto;
+}
