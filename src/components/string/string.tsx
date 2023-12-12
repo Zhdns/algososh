@@ -64,7 +64,7 @@ export const StringComponent: React.FC = () => {
         </div>
         <div className={style.result}>
             {output.map((element, index) => (
-              <Circle extraClass={style.circle} letter={element.element} state={element.status}/>
+              <Circle extraClass={style.circle} letter={element.element} state={element.status} key={index}/>
             ))}
         </div>
     </SolutionLayout>
