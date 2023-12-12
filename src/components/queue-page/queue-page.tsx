@@ -17,6 +17,8 @@ export const QueuePage: React.FC = () => {
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
   const [animating, setAnimating] = React.useState<number>(-1)
   const [buttonIsLock, setButtonIsLock] = React.useState<boolean>(false)
+  const [loader, setLoader] = React.useState<boolean>(false)
+  const [delLoader, setDelLoader] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     if(inputValue.length === 0) {
@@ -50,6 +52,7 @@ export const QueuePage: React.FC = () => {
   }
 
   const addToQueue = async () => {
+    setLoader(true)
     if (head + queue.getElements().length <= 6) {
     queue.enqueue(inputValue);
     getElements()
@@ -57,6 +60,7 @@ export const QueuePage: React.FC = () => {
     await delay(500)
     setAnimating(-1)
     setInputValue('');
+    setLoader(false)
     } else {
       console.log(queue.getElements())
       console.log(head)
@@ -64,11 +68,13 @@ export const QueuePage: React.FC = () => {
   };
   
   const delFromQueue = async () => {
+    setDelLoader(true)
     setAnimating(head)
     await delay(500)
     queue.dequeue();
     setAnimating(-1) 
     setHead(prevHead => prevHead < 7 ? prevHead + 1 : 7);
+    setDelLoader(false)
   };
 
   const restart = () => {
@@ -82,8 +88,8 @@ export const QueuePage: React.FC = () => {
       <div className={style.main}>
         <Input type="text" maxLength={4} isLimitText={true} extraClass={style.input}
         value={inputValue} onChange={input}/>
-        <Button text="Добавить" extraClass={style.button} onClick={addToQueue} disabled={buttonIsLock}/>
-        <Button text="Удалить" extraClass={style.button} onClick={delFromQueue}/>
+        <Button text="Добавить" extraClass={style.button} onClick={addToQueue} disabled={buttonIsLock} isLoader={loader}/>
+        <Button text="Удалить" extraClass={style.button} onClick={delFromQueue} isLoader={delLoader}/>
         <Button text="Очистить" extraClass={style.button} onClick={restart}/>
       </div>
       <div className={style.second}>

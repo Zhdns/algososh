@@ -61,18 +61,19 @@ async function sort() {
   const numberValue = parseInt(inputValue, 10); 
   if (!isNaN(numberValue)) { 
     await fibonacci(numberValue) 
+    setInputValue('')
   }
 }
 
   return (
     <SolutionLayout title="Последовательность Фибоначчи">
         <div className={style.main}>
-            <Input max='19' type = "number" isLimitText={true} onChange={handleInputChange} />
+            <Input max='19' type = "number" isLimitText={true} onChange={handleInputChange} value={inputValue} />
             <Button text='Рассчитать' onClick={sort} disabled={!buttonIsActive} isLoader={loader}/>
         </div>
         <div className={style.result}>
             {fibonacciSequence.map((element, index) => (
-              <Circle extraClass={style.circle} letter={element.num.toString()} index={index}/>
+              <Circle extraClass={style.circle} letter={element.num.toString()} index={index} key={index}/>
             ))}
         </div>
     </SolutionLayout>

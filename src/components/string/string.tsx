@@ -32,6 +32,7 @@ export const StringComponent: React.FC = () => {
   };
 
   const reverse = async () => {
+    setLoader(true)
     let array = input.split('').map(el => ({element: el, status: ElementStates.Default}))
     for (let i = 0; i < array.length / 2; i++) {
       array[i].status = ElementStates.Changing
@@ -51,6 +52,7 @@ export const StringComponent: React.FC = () => {
       }
     })
     setInput('')
+    setLoader(false)
   } 
 
 

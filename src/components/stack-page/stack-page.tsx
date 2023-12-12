@@ -17,6 +17,8 @@ export const StackPage: React.FC = () => {
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
   const [animating, setAnimating] = React.useState<number>(-1)
   const [head, setHead] = React.useState<number>(-1)
+  const [loader, setLoader] = React.useState<boolean>(false)
+  const [delLoader, setDelLoader] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     if (elements.length === 0) {
@@ -42,6 +44,7 @@ export const StackPage: React.FC = () => {
   }
 
   const add = async () => {
+    setLoader(true)
     stack.push(inputValue)
     setElements(stack.getElements())
     setAnimating(stack.getElements().length - 1)
@@ -49,15 +52,18 @@ export const StackPage: React.FC = () => {
     await delay(500)
     setAnimating(-1)
     setInputValue('')
+    setLoader(false)
   }
 
   const del =  async () => {
+    setDelLoader(true)
     stack.pop()
     setElements(stack.getElements())
     setAnimating(stack.getElements().length - 1)
     setHead(stack.getElements().length - 1)
     await delay(500)
     setAnimating(-1)
+    setDelLoader(false)
   }
 
   const reset = () => {
@@ -72,8 +78,8 @@ export const StackPage: React.FC = () => {
       <div className={style.main}>
         <Input type="text" maxLength={4} isLimitText={true} extraClass={style.input}
         value={inputValue} onChange={input}/>
-        <Button text="Добавить" extraClass={style.button} onClick={add} disabled={buttonIsLock}/>
-        <Button text="Удалить" extraClass={style.button} onClick={del} disabled={delButtonIsLock}/>
+        <Button text="Добавить" extraClass={style.button} onClick={add} disabled={buttonIsLock} isLoader={loader}/>
+        <Button text="Удалить" extraClass={style.button} onClick={del} disabled={delButtonIsLock} isLoader={delLoader}/>
         <Button text="Очистить" extraClass={style.button} onClick={reset} disabled={delButtonIsLock}/>
       </div>
       <div className={style.second}>
