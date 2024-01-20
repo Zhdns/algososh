@@ -77,10 +77,10 @@ export const StackPage: React.FC = () => {
     <SolutionLayout title="Стек">
       <div className={style.main}>
         <Input type="text" maxLength={4} isLimitText={true} extraClass={style.input}
-        value={inputValue} onChange={input}/>
-        <Button text="Добавить" extraClass={style.button} onClick={add} disabled={buttonIsLock} isLoader={loader}/>
-        <Button text="Удалить" extraClass={style.button} onClick={del} disabled={delButtonIsLock} isLoader={delLoader}/>
-        <Button text="Очистить" extraClass={style.button} onClick={reset} disabled={delButtonIsLock}/>
+        value={inputValue} onChange={input} data-testid='value'/>
+        <Button text="Добавить" extraClass={style.button} onClick={add} disabled={buttonIsLock} isLoader={loader} data-testid='add'/>
+        <Button text="Удалить" extraClass={style.button} onClick={del} disabled={delButtonIsLock} isLoader={delLoader} data-testid='delete'/>
+        <Button text="Очистить" extraClass={style.button} onClick={reset} disabled={delButtonIsLock} data-testid='clean'/>
       </div>
       <div className={style.second}>
         {elements.map((item, index) => (

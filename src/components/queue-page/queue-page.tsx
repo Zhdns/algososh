@@ -21,12 +21,16 @@ export const QueuePage: React.FC = () => {
   const [delLoader, setDelLoader] = React.useState<boolean>(false)
 
   React.useEffect(() => {
-    if(inputValue.length === 0) {
+    console.log(buttonIsLock)
+  }, [buttonIsLock])
+
+  React.useEffect(() => {
+    if(inputValue === '') {
       setButtonIsLock(true)
     } else {
       setButtonIsLock(false)
     }
-  })
+  }, [inputValue])
   
   React.useEffect(() => {
     getElements()
@@ -87,10 +91,10 @@ export const QueuePage: React.FC = () => {
     <SolutionLayout title="Очередь">
       <div className={style.main}>
         <Input type="text" maxLength={4} isLimitText={true} extraClass={style.input}
-        value={inputValue} onChange={input}/>
-        <Button text="Добавить" extraClass={style.button} onClick={addToQueue} disabled={buttonIsLock} isLoader={loader}/>
-        <Button text="Удалить" extraClass={style.button} onClick={delFromQueue} isLoader={delLoader}/>
-        <Button text="Очистить" extraClass={style.button} onClick={restart}/>
+        value={inputValue} onChange={input} data-testid="value"/>
+        <Button text="Добавить" extraClass={style.button} onClick={addToQueue} disabled={buttonIsLock} isLoader={loader}  data-testid="add"/>
+        <Button text="Удалить" extraClass={style.button} onClick={delFromQueue} isLoader={delLoader} data-testid="delete"/>
+        <Button text="Очистить" extraClass={style.button} onClick={restart}  data-testid="clean"/>
       </div>
       <div className={style.second}>
         {elements.map((item, index) => (

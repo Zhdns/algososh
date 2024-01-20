@@ -6,6 +6,7 @@ import { Input } from "../ui/input/input";
 import style from "./string.module.css"
 import { ElementStates } from "../../types/element-states";
 
+
 export const StringComponent: React.FC = () => {
   const [input, setInput] = React.useState<string>('')
   const [output, setOutput] = React.useState<{element: string, status: ElementStates}[]>([])
@@ -44,7 +45,7 @@ export const StringComponent: React.FC = () => {
       array[array.length - 1 -i].status = ElementStates.Modified
       setOutput([...array])
       await sleep(500)
-    }
+    } 
 
     array.forEach(element => {
       if (element.status !== ElementStates.Modified) {
@@ -53,18 +54,20 @@ export const StringComponent: React.FC = () => {
     })
     setInput('')
     setLoader(false)
+    console.log(output)
   } 
 
+  
 
   return (
     <SolutionLayout title="Строка">
      <div className={style.main}>
-            <Input maxLength={11} type = "text" isLimitText={true} onChange={handleChange} value={input}/>
-            <Button text='Рассчитать' onClick={reverse} disabled={buttoIsLock} isLoader={loader}/>
+            <Input maxLength={11} type = "text" isLimitText={true} onChange={handleChange} value={input} data-testid='value'/>
+            <Button text='Рассчитать' onClick={reverse} disabled={buttoIsLock} isLoader={loader} data-testid='submit'/>
         </div>
         <div className={style.result}>
             {output.map((element, index) => (
-              <Circle extraClass={style.circle} letter={element.element} state={element.status} key={index}/>
+              <Circle extraClass={style.circle} letter={element.element} state={element.status} key={index} data-testid='circle'/>
             ))}
         </div>
     </SolutionLayout>

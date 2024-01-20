@@ -68,8 +68,8 @@ async function sort() {
   return (
     <SolutionLayout title="Последовательность Фибоначчи">
         <div className={style.main}>
-            <Input max='19' type = "number" isLimitText={true} onChange={handleInputChange} value={inputValue} />
-            <Button text='Рассчитать' onClick={sort} disabled={!buttonIsActive} isLoader={loader}/>
+            <Input max='19' type = "number" isLimitText={true} onChange={handleInputChange} value={inputValue} data-testid='value'/>
+            <Button text='Рассчитать' onClick={sort} disabled={!buttonIsActive} isLoader={loader} data-testid='submit'/>
         </div>
         <div className={style.result}>
             {fibonacciSequence.map((element, index) => (
