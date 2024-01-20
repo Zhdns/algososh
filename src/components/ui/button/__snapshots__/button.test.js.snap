@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button/> renders correctly with text 1`] = `
+<DocumentFragment>
+  <button
+    class="text text_type_button text_color_primary button undefined false "
+    type="button"
+  >
+    <p
+      class="text undefined"
+    >
+      Test Button
+    </p>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Button/> renders when disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="text text_type_button text_color_primary button undefined false "
+    disabled=""
+    type="button"
+  >
+    <p
+      class="text undefined"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Button/> renders with icon 1`] = `
+<DocumentFragment>
+  <button
+    class="text text_type_button text_color_primary button undefined false "
+    type="button"
+  >
+    <svg
+      fill="inherit"
+      height="12"
+      viewBox="0 0 20 12"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 0C0.447715 0 0 0.447715 0 1C0 1.55228 0.447715 2 1 2H11C11.5523 2 12 1.55228 12 1C12 0.447715 11.5523 0 11 0H1ZM0 6C0 5.44772 0.447715 5 1 5H15C15.5523 5 16 5.44772 16 6C16 6.55228 15.5523 7 15 7H1C0.447715 7 0 6.55228 0 6ZM0 11C0 10.4477 0.447715 10 1 10H19C19.5523 10 20 10.4477 20 11C20 11.5523 19.5523 12 19 12H1C0.447716 12 0 11.5523 0 11Z"
+        fill="inherit"
+        fill-opacity="0.85"
+      />
+    </svg>
+    <p
+      class="text ml-5"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Button/> renders with loader 1`] = `
+<DocumentFragment>
+  <button
+    class="text text_type_button text_color_primary button undefined loader "
+    disabled=""
+    type="button"
+  >
+    <img
+      alt="Загрузка."
+      class="loader_icon"
+      src="loader.svg"
+    />
+  </button>
+</DocumentFragment>
+`;
+
+exports[`<Button/> renders without text 1`] = `
+<DocumentFragment>
+  <button
+    class="text text_type_button text_color_primary button undefined false "
+    type="button"
+  >
+    <p
+      class="text undefined"
+    />
+  </button>
+</DocumentFragment>
+`;

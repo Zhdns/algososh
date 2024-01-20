@@ -15,7 +15,7 @@ export const ListPage: React.FC = () => {
 
   const [list, setList] = React.useState(new LinkedList<string>())
   const [inputValue, setInputValue] = React.useState<string>('')
-  const [indexValue, setIndexValue] = React.useState<number>()
+  const [indexValue, setIndexValue] = React.useState<any>()
   const elements = list.toArray()
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
   const [upperAnimating, setUpperAnimating] = React.useState<{index: number, status: ElementStates, value: string}  | null> (null)
@@ -189,6 +189,7 @@ export const ListPage: React.FC = () => {
       setAnimating(null)
       setUpperAnimating(null)
       setInputValue('');
+      setIndexValue('')
       setLoader({status: false, value: ''})
     } else {
       console.log("Индекс не определён");
@@ -231,20 +232,20 @@ export const ListPage: React.FC = () => {
     <SolutionLayout title="Связный список">
       <div className={style.main}> 
         <Input type="text" maxLength={4} extraClass={style.input} isLimitText={true}
-        value={inputValue} onChange={handleInputValue}/>
-        <Button type="button" text="Добавить в head" onClick={addToHead} disabled={buttonIsLock} isLoader={loader.status && loader.value === 'h+' ? true : false}/>
-        <Button type="button" text="Добавить в tail" onClick={addToTail} disabled={buttonIsLock} isLoader={loader.status && loader.value === 't+' ? true : false}/>
-        <Button type="button" text='Удалить из head' onClick={removeFromHead} disabled={delButtonIsLock} isLoader={loader.status && loader.value === 'h-' ? true : false}/>
-        <Button type="button" text="Удалить из tail"onClick={removeFromTail} disabled={delButtonIsLock} isLoader={loader.status && loader.value === 't-' ? true : false}/>
+        value={inputValue} onChange={handleInputValue} data-testid="value"/>
+        <Button type="button" text="Добавить в head" onClick={addToHead} disabled={buttonIsLock} isLoader={loader.status && loader.value === 'h+' ? true : false} data-testid="addHead"/>
+        <Button type="button" text="Добавить в tail" onClick={addToTail} disabled={buttonIsLock} isLoader={loader.status && loader.value === 't+' ? true : false} data-testid="addTail"/>
+        <Button type="button" text='Удалить из head' onClick={removeFromHead} disabled={delButtonIsLock} isLoader={loader.status && loader.value === 'h-' ? true : false} data-testid="deleteHead"/>
+        <Button type="button" text="Удалить из tail"onClick={removeFromTail} disabled={delButtonIsLock} isLoader={loader.status && loader.value === 't-' ? true : false} data-testid="deleteTail"/>
       </div>
       <div className={style.main}>
-        <Input type="number" extraClass={style.input} value={indexValue} onChange={handleIndexValue}/>
+        <Input type="number" extraClass={style.input} value={indexValue} onChange={handleIndexValue} data-testid="valueIndex"/>
         <Button type="button" text='Добавить по индексу' extraClass={style.button} onClick={addByIndex} 
         disabled={indexButtonIsLockAdd} 
-        isLoader={loader.status && loader.value === 'i+' ? true : false}/>
+        isLoader={loader.status && loader.value === 'i+' ? true : false} data-testid="addByIndex"/>
         <Button type="button" text="Удалить по индексу" extraClass={style.button} onClick={deleteByIndex}
         disabled={indexButtonIsLockDel} 
-        isLoader={loader.status && loader.value === 'i-' ? true : false}/>
+        isLoader={loader.status && loader.value === 'i-' ? true : false} data-testid="deleteByIndex"/>
       </div>
       <div className={style.second}>
       {elements.map((item, index) => (
